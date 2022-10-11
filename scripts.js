@@ -1,5 +1,7 @@
 // Initialize array of values that will be shown on the screen
 let displayArray = [];
+ // Create array for current number 
+ let currentValue = [];
 
 function add(num1, num2) {
     value = num1 + num2;
@@ -44,13 +46,24 @@ function operate(array) {
 
 // Function that takes a value as input and displays it on the calculator screen 
 function calcDisplay(value) {
-    // Append the value to the display array
-    displayArray.push(value);
+    
+    // If value is a number map it to currentValue array
+    if (!isNaN(value)) {
+        currentValue.push(parseInt(value));
+    }
+    else {
+        // Append the value to the display array
+        let number = currentValue.join('');
+        displayArray.push(number, value);   
+    }
+    console.log(currentValue);
+    console.log(displayArray);
+    
+    
 
     // Get calc-screen input
     let display = document.getElementById('display');
     display.value = `current: ${value}, all: ${displayArray.join(' ')}`;
-    console.log(displayArray);
 }
 
 // Get all of the buttons into a variable
