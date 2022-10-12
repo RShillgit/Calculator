@@ -6,9 +6,6 @@ const clearButton = document.querySelector('.clear');
 const historyDisplay = document.getElementById('historyDisplay');
 const currentDisplay = document.getElementById('currentDisplay');
 
-// Might not need this
-const operators = ['*', '/', '+', '-'];
-
 // Clear everything initially
 let operator = "";
 let nextOperator = "";
@@ -18,6 +15,7 @@ let answer = "";
 historyDisplay.innerHTML = "";
 currentDisplay.innerHTML = "";
 
+// Calculates equation
 function operate(historyDisplayText, currentDisplayText) {
     // Split historyDisplayText to separate the number and operator
     historyDisplayText_split = historyDisplayText.split(" ");
