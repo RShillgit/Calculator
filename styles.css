@@ -18,8 +18,8 @@ footer {
     margin: 30px;
     padding: 15px;
     font-size: large;
-    text-align: center;
     border-top: 1px solid #9b2948;
+    text-align: center;
 }
 footer > a {
     text-decoration: none;
@@ -41,15 +41,13 @@ footer a > img:hover {
 .calc-container {
     border-radius: 30px;
     box-shadow: -10px 10px #9b2948;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: fit-content;
     margin: 20px;
     background-color: #eeee;
 }
 
 .calc-screen {
+    word-break: break-all;
+    width: 400px;
     color: #4C4E52;
     border: 3px solid #9b2948;
     border-radius: 10px;
@@ -59,6 +57,7 @@ footer a > img:hover {
     height: 70px;
     margin: 10px;
     padding: 10px;
+    
 }
 .calc-screen > #historyDisplay {
     text-align: left;

@@ -79,6 +79,8 @@ function displayCurrent(current) {
 numberButtons.forEach(numerButton => {
     numerButton.addEventListener('click', function(e) {
         let current = e.target.innerHTML;
+        // Stop user from entering only zeros unless followed by a decimal point
+        if (current !== "." && currentDisplay.innerHTML.includes("0") && currentDisplay.innerHTML.length == 1) return
         displayCurrent(current);
     })
 });
