@@ -3,6 +3,7 @@ const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
+const deleteButton = document.querySelector('.delete');
 const signButton = document.querySelector('.sign');
 const percentButton = document.querySelector('.percent');
 
@@ -108,6 +109,11 @@ clearButton.addEventListener('click', () => {
     answer = "";
     historyDisplay.innerHTML = "";
     currentDisplay.innerHTML = "";
+});
+// Event listener for delete button
+deleteButton.addEventListener('click', () => {
+    if (currentDisplay.innerHTML.length < 1) return
+    else currentDisplay.innerHTML = currentDisplay.innerHTML.slice(0, -1);
 });
 // Event listener for sign button
 signButton.addEventListener('click', () => {
