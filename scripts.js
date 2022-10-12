@@ -1,8 +1,12 @@
-// Elements
+// Buttons
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
+const signButton = document.querySelector('.sign');
+const percentButton = document.querySelector('.percent');
+
+// Elements
 const historyDisplay = document.getElementById('historyDisplay');
 const currentDisplay = document.getElementById('currentDisplay');
 
@@ -26,11 +30,14 @@ function operate(historyDisplayText, currentDisplayText) {
 
     // Perform correct calculation
     if(operator == "*") answer = num1 * num2;
-    if(operator == "/") answer =  num1 / num2;
+    if(operator == "-") answer =  num1 - num2;
     if(operator == "+") answer =  num1 + num2;
-    if(operator == "-") {
+    if(operator == "/") {
         if (num2 == 0) return alert("Cannot divide by zero!")
-        else answer = num1 - num2;
+        else {
+            let unroundedAnswer = num1 / num2;
+            answer = unroundedAnswer.toFixed(4);
+        }
     }
 
     if (nextOperator.length > 0) {
@@ -87,5 +94,32 @@ operatorButtons.forEach(operatorButton => {
     })
 });
 // Event listener for equals button
-equalsButton.addEventListener('click', () => operate(historyDisplay.innerHTML, currentDisplay.innerHTML));
+equalsButton.addEventListener('click', () => {
+    // If there is nothing in the history display and the user clicks "=" do nothing
+    if (historyDisplay.innerHTML.length < 1) return;
+    else operate(historyDisplay.innerHTML, currentDisplay.innerHTML);
+});
 // Event listener for clear button
+clearButton.addEventListener('click', () => {
+    operator = "";
+    nextOperator = "";
+    num1 = "";
+    num2 = "";
+    answer = "";
+    historyDisplay.innerHTML = "";
+    currentDisplay.innerHTML = "";
+});
+// Event listener for sign button
+signButton.addEventListener('click', () => {
+    // If currentDisplay is empty, do nothing
+    if (currentDisplay.innerHTML.length < 1) return;
+    // If value is already negative, make it postive
+    else if (currentDisplay.innerHTML.includes("-")) currentDisplay.innerHTML = currentDisplay.innerHTML.replace("-", "");
+    // Else make it negative
+    else currentDisplay.innerHTML = "-" + currentDisplay.innerHTML;
+});
+// Event listener for percent button
+percentButton.addEventListener('click', () => {
+    if (currentDisplay.innerHTML.length < 1) return;
+    else currentDisplay.innerHTML = currentDisplay.innerHTML / 100;
+});
