@@ -2,11 +2,21 @@
     display: flex;
     justify-content: center;
 }
-.calc-screen > input {
-    width: 440px;
-    height: 100px;
+
+.calc-screen {
+    border: 2px solid black;
     border-radius: 10px;
+    font-size: 50px;
 }
+.calc-screen > p {
+    width: 440px;
+    height: 70px;
+    margin: 10px;
+}
+.calc-screen > #answerDisplay {
+    text-align: right;
+}
+
 button {
     width: 100px;
     height: 100px;
