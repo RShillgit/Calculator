@@ -36,8 +36,9 @@ function operate(historyDisplayText, currentDisplayText) {
     if(operator == "/") {
         if (num2 == 0) return alert("Cannot divide by zero!")
         else {
-            let unroundedAnswer = num1 / num2;
-            answer = unroundedAnswer.toFixed(4);
+            answer = num1 / num2;
+            //let unroundedAnswer = num1 / num2;
+            // answer = unroundedAnswer.toFixed(4);
         }
     }
 
@@ -49,21 +50,22 @@ function operate(historyDisplayText, currentDisplayText) {
     }
     else {
         historyDisplay.innerHTML = "";
-        // Temporarily convert answer to string to check length
+        // Temporarily convert answer to string 
         let answerString = answer.toString();
         if (answerString.length >= 8) {
             // Convert long answer to scientific notation so it will fit in the screen
             let scientificAnswer = answer.toExponential();
+            console.log(scientificAnswer);
+            console.log(answer)
             if (scientificAnswer.length >= 8) {
-                // Convert back to a number so it can be rounded
-                let intScientificAnswer = Number(scientificAnswer);
-                let roundedScientificAnswer = Math.round(intScientificAnswer / 100) * 100;
-                // Convert back to scientific notation again
-                let newAndImprovedAnswer = roundedScientificAnswer.toExponential();
-                return currentDisplay.innerHTML = newAndImprovedAnswer;
+                let intScientificAnswer = Number(scientificAnswer).toPrecision(2);
+                return currentDisplay.innerHTML = intScientificAnswer;
             }
+            
             return currentDisplay.innerHTML = scientificAnswer;
         }
+        // Convert Back to a number
+        
         return currentDisplay.innerHTML = answer;
     };
 };
