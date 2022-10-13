@@ -55,20 +55,17 @@ function operate(historyDisplayText, currentDisplayText) {
         if (answerString.length >= 8) {
             // Convert long answer to scientific notation so it will fit in the screen
             let scientificAnswer = answer.toExponential();
-            console.log(scientificAnswer);
-            console.log(answer)
+            // If the length of the scientfic notation is too long as well then round it
             if (scientificAnswer.length >= 8) {
                 let intScientificAnswer = Number(scientificAnswer).toPrecision(2);
                 return currentDisplay.innerHTML = intScientificAnswer;
             }
-            
             return currentDisplay.innerHTML = scientificAnswer;
-        }
-        // Convert Back to a number
-        
+        }      
         return currentDisplay.innerHTML = answer;
     };
 };
+
 // Function that displays previous inputs
 function displayHistory(operator) {
     // If there is already an equation in historyDisplay send it to operate function
@@ -81,7 +78,7 @@ function displayHistory(operator) {
         historyDisplay.innerHTML = currentDisplay.innerHTML + " " + operator;
         currentDisplay.innerHTML = "";
     }
-}
+};
 
 // Function that displays current value
 function displayCurrent(current) {
@@ -94,7 +91,6 @@ function displayCurrent(current) {
     currentDisplay.innerHTML += current;
 };
 
-
 // Event listener for number buttons and decimal button
 numberButtons.forEach(numerButton => {
     numerButton.addEventListener('click', function(e) {
@@ -104,6 +100,7 @@ numberButtons.forEach(numerButton => {
         displayCurrent(current);
     })
 });
+
 // Event listener for operator buttons
 operatorButtons.forEach(operatorButton => {
     operatorButton.addEventListener('click', function(e) {
@@ -116,12 +113,14 @@ operatorButtons.forEach(operatorButton => {
         displayHistory(operator);
     })
 });
+
 // Event listener for equals button
 equalsButton.addEventListener('click', () => {
     // If there is nothing in the history display and the user clicks "=" do nothing
     if (historyDisplay.innerHTML.length < 1) return;
     else operate(historyDisplay.innerHTML, currentDisplay.innerHTML);
 });
+
 // Event listener for clear button
 clearButton.addEventListener('click', () => {
     operator = "";
@@ -132,11 +131,13 @@ clearButton.addEventListener('click', () => {
     historyDisplay.innerHTML = "";
     currentDisplay.innerHTML = "";
 });
+
 // Event listener for delete button
 deleteButton.addEventListener('click', () => {
     if (currentDisplay.innerHTML.length < 1) return
     else currentDisplay.innerHTML = currentDisplay.innerHTML.slice(0, -1);
 });
+
 // Event listener for sign button
 signButton.addEventListener('click', () => {
     // If currentDisplay is empty, do nothing
@@ -146,6 +147,7 @@ signButton.addEventListener('click', () => {
     // Else make it negative
     else currentDisplay.innerHTML = "-" + currentDisplay.innerHTML;
 });
+
 // Event listener for percent button
 percentButton.addEventListener('click', () => {
     if (currentDisplay.innerHTML.length < 1) return;
