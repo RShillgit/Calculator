@@ -49,10 +49,24 @@ function operate(historyDisplayText, currentDisplayText) {
     }
     else {
         historyDisplay.innerHTML = "";
-        currentDisplay.innerHTML = answer;
-    }
+        // Temporarily convert answer to string to check length
+        let answerString = answer.toString();
+        if (answerString.length >= 8) {
+            // Convert long answer to scientific notation so it will fit in the screen
+            let scientificAnswer = answer.toExponential();
+            if (scientificAnswer.length >= 8) {
+                // Convert back to a number so it can be rounded
+                let intScientificAnswer = Number(scientificAnswer);
+                let roundedScientificAnswer = Math.round(intScientificAnswer / 100) * 100;
+                // Convert back to scientific notation again
+                let newAndImprovedAnswer = roundedScientificAnswer.toExponential();
+                return currentDisplay.innerHTML = newAndImprovedAnswer;
+            }
+            return currentDisplay.innerHTML = scientificAnswer;
+        }
+        return currentDisplay.innerHTML = answer;
+    };
 };
-
 // Function that displays previous inputs
 function displayHistory(operator) {
     // If there is already an equation in historyDisplay send it to operate function

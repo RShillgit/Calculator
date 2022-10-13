@@ -43,6 +43,7 @@ footer a > img:hover {
     box-shadow: -10px 10px #9b2948;
     margin: 20px;
     background-color: #eeee;
+    width: 450px;
 }
 
 .calc-screen {
