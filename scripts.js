@@ -84,7 +84,7 @@ function displayHistory(operator) {
 function displayCurrent(current) {
     // Dont let length go over 9 digits
     if (currentDisplay.innerHTML.length >= 9) {
-        return alert("Calculator cannot display anymore values.")
+        return 
     } 
     // Only allow one decimal point
     if (current == "." && currentDisplay.innerHTML.includes(".")) return;
